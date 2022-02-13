@@ -99,7 +99,8 @@
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy;
-                            <script> document.write(new Date().getFullYear()); </script> citycode.id
+                            <script> document.write(new Date().getFullYear()); </script> - developed by
+                            <b><a href="https://citycode.tech/" target="_blank">www.citycode.tech</a></b>
                         </span>
                     </div>
                 </div>
