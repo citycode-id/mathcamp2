@@ -1,8 +1,10 @@
 @extends('layouts.siswa')
 
 @section('content')
-<div class="container-fluid" style="height: 85vh;" id="container-wrapper">
+<div class="container-fluid" style="height: 85vh; display:flex; flex-direction:column; flex:1;" id="container-wrapper">
     <div class="row">
+
+        {{-- Tugas Kelompok --}}
         <div class="col-lg-6 d-flex">
             <div class="card flex-fill">
                 <div class="card-header bg-primary">
@@ -10,54 +12,19 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-3">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                aria-orientation="vertical">
-                                <a class="nav-link active" id="pertemuan-1-tab" data-toggle="pill" href="#pertemuan-1"
-                                    role="tab" aria-controls="pertemuan-1" aria-selected="true">Pertemuan 1</a>
-                                <a class="nav-link" id="pertemuan-2-tab" data-toggle="pill" href="#pertemuan-2"
-                                    role="tab" aria-controls="pertemuan-2" aria-selected="false">Pertemuan 2</a>
-                                <a class="nav-link" id="pertemuan-3-tab" data-toggle="pill" href="#pertemuan-3"
-                                    role="tab" aria-controls="pertemuan-3" aria-selected="false">Pertemuan 3</a>
-                                <a class="nav-link" id="pertemuan-4-tab" data-toggle="pill" href="#pertemuan-4"
-                                    role="tab" aria-controls="pertemuan-4" aria-selected="false">Pertemuan 4</a>
-                                <a class="nav-link" id="pertemuan-5-tab" data-toggle="pill" href="#pertemuan-5"
-                                    role="tab" aria-controls="pertemuan-5" aria-selected="false">Pertemuan 5</a>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="pertemuan-1" role="tabpanel"
-                                    aria-labelledby="pertemuan-1-tab">
-                                    <p>Belum ada tugas yang diunggah</p>
-                                    <button type="button" class="btn btn-outline-success">Unggah</button>
-                                </div>
-                                <div class="tab-pane fade" id="pertemuan-2" role="tabpanel"
-                                    aria-labelledby="v-pills-messages-tab">
-                                    <p>Belum ada tugas yang diunggah</p>
-                                    <button type="button" class="btn btn-outline-success">Unggah</button>
-                                </div>
-                                <div class="tab-pane fade" id="pertemuan-3" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <p>Belum ada tugas yang diunggah</p>
-                                    <button type="button" class="btn btn-outline-success">Unggah</button>
-                                </div>
-                                <div class="tab-pane fade" id="pertemuan-4" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <p>Belum ada tugas yang diunggah</p>
-                                    <button type="button" class="btn btn-outline-success">Unggah</button>
-                                </div>
-                                <div class="tab-pane fade" id="pertemuan-5" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <p>Belum ada tugas yang diunggah</p>
-                                    <button type="button" class="btn btn-outline-success">Unggah</button>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <h5>Pertemuan {{ $meeting->meeting }}</h5>
+                            @foreach ($meeting->assignments as $assignment )
+                            <a role="button" target="_blank" href="{{ asset('storage/assignments/'.$assignment->file) }}" class="btn btn-danger btn-block mb-3"><i class="fas fa-file-pdf"></i> Download {{ $assignment->name }}</a>
+                            <button type="button" class="btn btn-outline-success">Upload Jawaban</button>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        {{-- Tugas Pribadi --}}
         <div class="col-lg-6 d-flex">
             <div class="card flex-fill">
                 <div class="card-header bg-info">
@@ -65,79 +32,12 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-3">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                aria-orientation="vertical">
-                                <a class="nav-link active" id="tugas-1-tab" data-toggle="pill" href="#tugas-1"
-                                    role="tab" aria-controls="tugas-1" aria-selected="true">Tugas 1</a>
-                                <a class="nav-link" id="tugas-2-tab" data-toggle="pill" href="#tugas-2" role="tab"
-                                    aria-controls="tugas-2" aria-selected="false">Tugas 2</a>
-                                <a class="nav-link" id="tugas-3-tab" data-toggle="pill" href="#tugas-3" role="tab"
-                                    aria-controls="tugas-3-" aria-selected="false">Tugas 3</a>
-                                <a class="nav-link" id="tugas-4-tab" data-toggle="pill" href="#tugas-4" role="tab"
-                                    aria-controls="tugas-4" aria-selected="false">Tugas 4</a>
-                                <a class="nav-link" id="tugas-5-tab" data-toggle="pill" href="#tugas-5" role="tab"
-                                    aria-controls="tugas-5" aria-selected="false">Tugas 5</a>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="tugas-1" role="tabpanel"
-                                    aria-labelledby="tugas-1-tab">
-                                    <dl class="row">
-                                        <dt class="col-sm-3">Soal</dt>
-                                        <dd class="col-sm-9">: <a href="#">Soal1.pdf</a></dd>
-
-                                        <dt class="col-sm-3">Jawaban</dt>
-                                        <dd class="col-sm-9">: <a href="#">Jawaban1.pdf</a></dd>
-                                    </dl>
-                                    <button type="button" class="btn btn-outline-success">Unggah Jawaban</button>
-                                </div>
-                                <div class="tab-pane fade" id="tugas-2" role="tabpanel"
-                                    aria-labelledby="v-pills-messages-tab">
-                                    <dl class="row">
-                                        <dt class="col-sm-3">Soal</dt>
-                                        <dd class="col-sm-9">: <a href="#">Soal1.pdf</a></dd>
-
-                                        <dt class="col-sm-3">Jawaban</dt>
-                                        <dd class="col-sm-9">: <a href="#">Jawaban1.pdf</a></dd>
-                                    </dl>
-                                    <button type="button" class="btn btn-outline-success">Unggah Jawaban</button>
-                                </div>
-                                <div class="tab-pane fade" id="tugas-3" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <dl class="row">
-                                        <dt class="col-sm-3">Soal</dt>
-                                        <dd class="col-sm-9">: <a href="#">Soal1.pdf</a></dd>
-
-                                        <dt class="col-sm-3">Jawaban</dt>
-                                        <dd class="col-sm-9">: <a href="#">Jawaban1.pdf</a></dd>
-                                    </dl>
-                                    <button type="button" class="btn btn-outline-success">Unggah Jawaban</button>
-                                </div>
-                                <div class="tab-pane fade" id="tugas-4" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <dl class="row">
-                                        <dt class="col-sm-3">Soal</dt>
-                                        <dd class="col-sm-9">: <a href="#">Soal1.pdf</a></dd>
-
-                                        <dt class="col-sm-3">Jawaban</dt>
-                                        <dd class="col-sm-9">: <a href="#">Jawaban1.pdf</a></dd>
-                                    </dl>
-                                    <button type="button" class="btn btn-outline-success">Unggah Jawaban</button>
-                                </div>
-                                <div class="tab-pane fade" id="tugas-5" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <dl class="row">
-                                        <dt class="col-sm-3">Soal</dt>
-                                        <dd class="col-sm-9">: <a href="#">Soal1.pdf</a></dd>
-
-                                        <dt class="col-sm-3">Jawaban</dt>
-                                        <dd class="col-sm-9">: <a href="#">Jawaban1.pdf</a></dd>
-                                    </dl>
-                                    <button type="button" class="btn btn-outline-success">Unggah Jawaban</button>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <h5>Pertemuan {{ $meeting->meeting }}</h5>
+                            @foreach ($meeting->tasks as $task )
+                            <a role="button" target="_blank" href="{{ asset('storage/tasks/'.$task->file) }}" class="btn btn-danger btn-block mb-3"><i class="fas fa-file-pdf"></i> Download {{ $task->name }}</a>
+                            <button type="button" class="btn btn-outline-success mb-4">Upload Jawaban</button>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -145,7 +45,7 @@
         </div>
     </div>
 
-    <div class="row bg-light  p-3 mt-3">
+    <div class="row bg-light p-3 mt-auto">
         <div class="col-lg-6">
             <a class="btn btn-primary" href="{{ route('student.topic.diskusi', ['id' => $topic->id]) }}" role="button"><i class="fas fa-chevron-left"></i>
                 Kembali</a>
@@ -153,7 +53,7 @@
 
         <div class="col-lg-6 float-right">
             <div class="float-right">
-                <button class="btn btn-success btn-next">Selesai <i class="fas fa-check"></i></button>
+                <a href="{{ route('home') }}" class="btn btn-success btn-next">Selesai <i class="fas fa-check"></i></a>
             </div>
         </div>
     </div>
