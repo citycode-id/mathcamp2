@@ -56,8 +56,8 @@ class TaskController extends Controller
         $task = $meeting->tasks->where('_id', $id)->first();
 
         // delete task file
-        if(Storage::exists('public/modules/'.$task->file)){
-            Storage::delete('public/modules/'.$task->file);
+        if(Storage::exists('public/tasks/'.$task->file)){
+            Storage::delete('public/tasks/'.$task->file);
         }
 
         $delete = $task->delete();
