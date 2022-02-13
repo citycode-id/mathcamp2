@@ -37,8 +37,10 @@
                 </div>
             </div>
         @empty
-            <p>Belum ada topik pembelajaran</p>
-        @endforeach
+            <div class="col-lg-3 col-sm-12 mb-4">
+                <p>Belum ada topik pembelajaran</p>
+            </div>
+        @endforelse
     </div>
     <!--Row-->
 </div>
