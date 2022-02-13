@@ -1,7 +1,7 @@
 @extends('layouts.siswa')
 
 @section('content')
-<div class="container-fluid" style="height: 85vh;" id="container-wrapper">
+<div class="container-fluid" style="height: 85vh; display:flex; flex-direction:column; flex:1;" id="container-wrapper">
     <div class="row">
         <div class="col-lg-9 d-flex">
             <div class="card flex-fill">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="row bg-light  p-3 mt-3">
+    <div class="row bg-light p-3 mt-auto">
         <div class="col-lg-6">
             <a class="btn btn-primary" href="{{ route('student.topic.video', ['id' => $topic->id]) }}" role="button"><i class="fas fa-chevron-left"></i>
                 Kembali</a>
