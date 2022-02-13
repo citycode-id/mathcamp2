@@ -49,9 +49,10 @@ class TopicController extends Controller
     public function video($id)
     {
         $topic = Topic::find($id);
+        $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
 
         if ($topic) {
-            return view('pages.siswa.topik_video', compact('topic'));
+            return view('pages.siswa.topik_video', compact('topic', 'meeting'));
         }
 
         abort(404);
@@ -75,9 +76,10 @@ class TopicController extends Controller
     public function tugas($id)
     {
         $topic = Topic::find($id);
+        $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
 
         if ($topic) {
-            return view('pages.siswa.topik_tugas', compact('topic'));
+            return view('pages.siswa.topik_tugas', compact('topic', 'meeting'));
         }
 
         abort(404);
