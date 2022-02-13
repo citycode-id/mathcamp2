@@ -16,7 +16,7 @@ class StudentSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for ($i=0; $i < 9 ; $i++) {
+        for ($i=0; $i < 15 ; $i++) {
             User::create([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
