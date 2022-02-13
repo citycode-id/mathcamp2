@@ -13,7 +13,6 @@
 
     <!-- Row -->
     <div class="row">
-        <!-- Datatables -->
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-body">
@@ -132,14 +131,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Tabel Tugas Pribadi -->
+                                    <!-- Tugas -->
                                     <div class="row mt-3">
-                                        <div class="col-12">
+                                        {{-- Tugas Pribadi --}}
+                                        <div class="col-6">
                                             <div>
                                                 <label><strong>Tugas Pribadi</strong> <a href="" class="btn-task-tambah">[tambah]</a></label>
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table align-items-center table-flush" id="table-task-{{ $loop->iteration }}" data-id="{{ $meeting->_id }}" style="width: 100%;">
+                                                    <thead class="thead-light">
+                                                        <tr class="text-center">
+                                                            <th>No</th>
+                                                            <th>File Tugas</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        {{-- Tugas Kelompok --}}
+                                        <div class="col-6">
+                                            <div>
+                                                <label><strong>Tugas Kelompok</strong> <a href="" class="btn-assignment-tambah">[tambah]</a></label>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center table-flush" id="table-assignment-{{ $loop->iteration }}" data-id="{{ $meeting->_id }}" style="width: 100%;">
                                                     <thead class="thead-light">
                                                         <tr class="text-center">
                                                             <th>No</th>
@@ -351,6 +370,46 @@
                 <form action="" method="post" id="form-task" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="text" class="d-none" id="task_meeting_id" name="id">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Nama File</label>
+                                    <input type="text" class="form-control" name="nama">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>File</label>
+                                    <input type="file" class="form-control-file" name="file" accept=".pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Assignment -->
+    <div class="modal fade" id="modalAssignment" tabindex="-1" role="dialog" aria-labelledby="modalAssignmentLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah File Tugas </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" method="post" id="form-assignment" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="text" class="d-none" id="assignment_meeting_id" name="id">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
