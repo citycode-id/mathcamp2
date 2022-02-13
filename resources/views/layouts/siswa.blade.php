@@ -20,7 +20,7 @@
 <body id="page-top">
     <div id="wrapper">
         <!-- Content -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="vh-100 d-flex flex-column">
             <div id="content">
                 <!-- TopBar -->
                 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
@@ -54,7 +54,9 @@
                 <!-- Topbar -->
 
                 <!-- Container Fluid-->
-                @yield('content')
+                <div style="flex-grouw: 1;">
+                    @yield('content')
+                </div>
                 <!---Container Fluid-->
             </div>
 
@@ -83,9 +85,12 @@
                     </div>
                 </div>
             </div>
-            @if (Request::is('home'))
-                @include('includes.footer')
-            @endif
+
+            <div style="margin-top: auto;">
+                @if (Request::is('home'))
+                    @include('includes.footer')
+                @endif
+            </div>
         </div>
     </div>
 
