@@ -147,12 +147,14 @@ $(function () {
     $('#video_meeting_id').val($('#table-video-1').data('id'));
     $('#module_meeting_id').val($('#table-module-1').data('id'));
     $('#task_meeting_id').val($('#table-task-1').data('id'));
+    $('#assignment_meeting_id').val($('#table-task-1').data('id'));
 
     // on shown
     $('a[data-toggle="pill"]').on('shown.bs.tab', function (event) {
         $('#video_meeting_id').val($(this).data('id'));
         $('#module_meeting_id').val($(this).data('id'));
         $('#task_meeting_id').val($(this).data('id'));
+        $('#assignment_meeting_id').val($(this).data('id'));
     })
 
      // Form submit video
@@ -241,6 +243,40 @@ $(function () {
                     var data = response.data
                     $('#table-task-'+data.meeting).DataTable().ajax.reload()
                     $("#modalTask").modal('hide');
+
+                    $("input[name='nama']").val('');
+                    $("input[name='url']").val('');
+                    $("input[name='file']").val('');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR)
+                $.LoadingOverlay('hide')
+                Swal.fire('Oops!', 'Terjadi Kesalahan Server.', 'error')
+            }
+        });
+    });
+
+    // Form submit assignment
+    $('#form-assignment').submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData($("#form-assignment")[0]);
+        $.ajax({
+            type: "POST",
+            url: "/teacher/meeting/assignment",
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $.LoadingOverlay('show')
+            },
+            success: function (response) {
+                $.LoadingOverlay('hide')
+                if (response.meta.status == 'success') {
+                    Swal.fire('Berhasil!', 'Data berhasil disimpan', 'success')
+                    var data = response.data
+                    $('#table-assignment-'+data.meeting).DataTable().ajax.reload()
+                    $("#modalAssignment").modal('hide');
 
                     $("input[name='nama']").val('');
                     $("input[name='url']").val('');
