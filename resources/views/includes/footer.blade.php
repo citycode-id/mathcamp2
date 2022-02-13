@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
+    <div class="container">
+        <div class="copyright text-center">
             <span>copyright &copy; <script>
                     document.write(new Date().getFullYear());
                 </script> - developed by

@@ -7,7 +7,15 @@
     </div>
 
     <div class="row mb-3">
-        @foreach ($topics as $topic)
+        @if (session('status'))
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h6><i class="fas fa-check"></i><b> Terdaftar!</b></h6>
+                {{ session('status') }} - Kamu berhasil terdaftar.
+            </div>
+        @endif
+
+        @forelse ($topics as $topic)
             <div class="col-lg-3 col-sm-12 mb-4">
                 <div class="card">
                     <img src="https://via.placeholder.com/400x250.webp?text=MathCamp" class="card-img-top" alt="image"
@@ -28,6 +36,8 @@
                     </div>
                 </div>
             </div>
+        @empty
+            <p>Belum ada topik pembelajaran</p>
         @endforeach
     </div>
     <!--Row-->
