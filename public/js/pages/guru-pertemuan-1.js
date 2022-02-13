@@ -104,6 +104,39 @@ $(function () {
         ]
     });
 
+    var table_assignment = $('#table-assignment-1').DataTable({
+        ajax: '/teacher/meeting/assignment/'+$('#table-assignment-1').data('id'),
+        searching: false,
+        ordering: false,
+        paging: false,
+        columnDefs: [
+            {
+                targets: 0,
+                className: "text-center",
+                width: '10%',
+                render: function (data, type, row, meta) {
+                    return meta.row + 1
+                }
+            },
+            {
+                targets: 1,
+                data: 'name',
+                render: function (data, type, row, meta) {
+                    return `<a href="/storage/assignments/${row.file}" target="_blank">${data}</a>`
+                }
+            },
+            {
+                targets: 2,
+                className: "text-center",
+                width: '10%',
+                data: '_id',
+                render: function (data, type, row, meta) {
+                    return `<button class="btn btn-sm btn-danger btn-delete" data-id="${data}"><i class="fas fa-times"></i></button>`
+                }
+            }
+        ]
+    });
+
     // var task_result = $('#table-task-result-1').DataTable({
     //     ajax: "/",
     //     searching: false,
@@ -273,6 +306,42 @@ $(function () {
                 if (response.meta.status == 'success') {
                     Swal.fire('Berhasil!', 'Data berhasil dihapus', 'success')
                     table_task.ajax.reload()
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR)
+                $.LoadingOverlay('hide')
+                Swal.fire('Oops!', 'Terjadi Kesalahan Server.', 'error')
+            }
+        });
+    });
+
+    // ASSIGNMENT
+    // Button add assignment
+    $('.btn-assignment-tambah').on('click', function (e) {
+        e.preventDefault()
+        // var meeting_id = $('#table-assignment-1').data('id');
+        // $('#assignment_meeting_id').val(meeting_id);
+        $("#modalAssignment").modal('show');
+    });
+
+    // Button delete assignment
+    $('#table-assignment-1 tbody').on('click', '.btn-delete', function () {
+        var data = table_assignment.row( $(this).parents('tr') ).data();
+        var id = data._id
+        var meeting_id = $('#table-assignment-1').data('id')
+
+        $.ajax({
+            type: "DELETE",
+            url: `/teacher/meeting/assignment/${id}/${meeting_id}`,
+            beforeSend: function() {
+                $.LoadingOverlay('show')
+            },
+            success: function (response) {
+                $.LoadingOverlay('hide')
+                if (response.meta.status == 'success') {
+                    Swal.fire('Berhasil!', 'Data berhasil dihapus', 'success')
+                    table_assignment.ajax.reload()
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
