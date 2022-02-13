@@ -27,4 +27,9 @@ class Meeting extends Model
     {
         return $this->embedsMany(Module::class);
     }
+
+    public function assignments()
+    {
+        return $this->embedsMany(Assignment::class);
+    }
 }
