@@ -32,4 +32,9 @@ class Meeting extends Model
     {
         return $this->embedsMany(Assignment::class);
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

@@ -99,4 +99,10 @@ Route::group(['middleware' => ['auth', 'role:student'], 'prefix' => 'student', '
     Route::group(['prefix' => 'discussion', 'as' => 'discussion.'], function() {
         Route::post('/', [App\Http\Controllers\DiscussionController::class, 'store'])->name('store');
     });
+
+    // Answer
+    Route::group(['prefix' => 'answer', 'as' => 'answer.'], function() {
+        Route::post('/individual', [App\Http\Controllers\AnswerController::class, 'individual'])->name('individual');
+        Route::post('/group', [App\Http\Controllers\AnswerController::class, 'group'])->name('group');
+    });
 });
