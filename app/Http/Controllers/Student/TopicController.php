@@ -28,7 +28,8 @@ class TopicController extends Controller
         $topic = Topic::find($id);
 
         if ($topic) {
-            return view('pages.siswa.topik_pengenalan', compact('topic'));
+            $meeting = $topic->current_meeting;
+            return view('pages.siswa.topik_pengenalan'.$meeting, compact('topic'));
         }
 
         abort(404);
