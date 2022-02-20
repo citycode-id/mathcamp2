@@ -28,8 +28,9 @@ class TopicController extends Controller
         $topic = Topic::find($id);
 
         if ($topic) {
-            $meeting = $topic->current_meeting;
-            return view('pages.siswa.topik_pengenalan'.$meeting, compact('topic'));
+            $current = $topic->current_meeting;
+            $meeting = $topic->meetings()->where('meeting', $current)->first();
+            return view('pages.siswa.topik_pengenalan'.$current, compact('topic','meeting'));
         }
 
         abort(404);
@@ -62,13 +63,14 @@ class TopicController extends Controller
     public function diskusi($id)
     {
         $topic = Topic::find($id);
+        $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
         $group = Group::where('topic_id', $id)->where('user_ids', Auth::user()->id)->first();
         $discussion = Discussion::where('group_id', $group->id)->get();
         $member = User::whereHas('groups', function($q) use($group) {
             $q->where('_id', $group->id);
         })->get();
         if ($topic) {
-            return view('pages.siswa.topik_diskusi', compact('topic', 'group', 'discussion', 'member'));
+            return view('pages.siswa.topik_diskusi', compact('topic', 'group', 'discussion', 'member', 'meeting'));
         }
 
         abort(404);

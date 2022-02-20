@@ -105,4 +105,10 @@ Route::group(['middleware' => ['auth', 'role:student'], 'prefix' => 'student', '
         Route::post('/individual', [App\Http\Controllers\AnswerController::class, 'individual'])->name('individual');
         Route::post('/group', [App\Http\Controllers\AnswerController::class, 'group'])->name('group');
     });
+
+    // Meeting Step
+    Route::group(['prefix' => 'step', 'as' => 'step.'], function() {
+      Route::get('/', [App\Http\Controllers\StepController::class, 'index'])->name('index');
+      Route::post('/', [App\Http\Controllers\StepController::class, 'store'])->name('store');
+    });
 });

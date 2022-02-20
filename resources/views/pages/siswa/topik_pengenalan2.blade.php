@@ -90,5 +90,5 @@
 @endpush
 
 @push('js')
-    <script src="{{asset('js/pages/siswa-topik-pengenalan.js')}}"></script>
+    <script src="{{asset('js/pages/siswa-topik-pengenalan2.js')}}"></script>
 @endpush

@@ -9,26 +9,81 @@ $(function () {
 
     bsCustomFileInput.init()
 
-    Swal.fire(
-        "Instruksi!",
-        "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan kedalam ruang tugas kemudian mengakses soal Latihan untuk dikerjakan secara mandiri dan diupload kembali keruang tugas",
-        "info"
-    );
+    const step = 5
+    const meeting = $("#meeting-id").val();
+    const next = $(".btn-next").data('id')
+
+    let forward = false;
+
+    $.ajax({
+      type: "get",
+      url: "/student/step",
+      data: {id: meeting},
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        var data = response.data;
+        var last = data.last_step;
+        if (last >= step) {
+          alertNext();
+        } else {
+          Swal.fire(
+              "Instruksi!",
+              "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan kedalam ruang tugas kemudian mengakses soal Latihan untuk dikerjakan secara mandiri dan diupload kembali keruang tugas",
+              "info"
+          );
+        }
+      },
+      error: function (jqxhr, textStatus, errorThrown) {
+        console.log(jqxhr)
+      }
+    });
+
+    function alertNext(){
+      Swal.fire({
+        title: 'Bagus!',
+        text: 'Kamu sudah menyelesaikan tahapan ini.',
+        icon: 'success',
+        confirmButtonText: 'Selesai'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "/student/topic/"+next+"/pembuka";
+        }
+      })
+    }
+
+    function ajaxStore() {
+      $.ajax({
+        type: "post",
+        url: "/student/step",
+        data: {id: meeting, last_step: step},
+        dataType: "json",
+        success: function (response) {
+          if (response.meta.status == "success") {
+            alertNext()
+            forward = true
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR)
+        }
+      });
+    }
+
+    $(".btn-next").click(function (e) {
+      e.preventDefault();
+      if (forward) {
+        window.location = "/student/topic/"+next+"/pembuka";
+      } else (
+        ajaxStore()
+      )
+    });
+
 
     $(".btn-outline-success").click(function (e) {
         e.preventDefault();
         $("#modalTugas").modal('show')
     });
-
-    $(".btn-next").click(function (e) {
-        e.preventDefault();
-        check();
-    });
-
-    function check() {
-        localStorage.setItem("checkpoint", 5);
-        // window.location = "/siswa-topik-tugas.html";
-    }
 
     $('.btn-assignment').click(function (e) {
         e.preventDefault();

@@ -9,21 +9,77 @@ $(function () {
         }
     });
 
-    Swal.fire(
-        "Instruksi!",
-        "Setelah kalian menonton video pembelajaran dan membaca materi pembelajaran serta menemukan sumberi belajar melalui tautan, berikutnya kalian akan dibagi kedalam kelompok kecil untuk berdiskusi mengenai permasalahan yang ditemukan.",
-        "info"
-    );
+    const step = 4
+    const meeting = $("#meeting-id").val();
+    const next = $(".btn-next").data('id')
 
-    $(".btn-next").click(function (e) {
-        e.preventDefault();
-        check($(this).data('id'));
+    let forward = false;
+
+    $.ajax({
+      type: "get",
+      url: "/student/step",
+      data: {id: meeting},
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        var data = response.data;
+        var last = data.last_step;
+        if (last >= step) {
+          console.log(last);
+          alertNext();
+        } else {
+          Swal.fire(
+            "Instruksi!",
+            "Setelah kalian menonton video pembelajaran dan membaca materi pembelajaran serta menemukan sumberi belajar melalui tautan, berikutnya kalian akan dibagi kedalam kelompok kecil untuk berdiskusi mengenai permasalahan yang ditemukan.",
+            "info"
+          );
+        }
+      },
+      error: function (jqxhr, textStatus, errorThrown) {
+        console.log(jqxhr)
+      }
     });
 
-    function check(id) {
-        localStorage.setItem("checkpoint", 4);
-        window.location = "/student/topic/"+id+"/tugas";
+    function alertNext(){
+      Swal.fire({
+        title: 'Bagus!',
+        text: 'Kamu sudah menyelesaikan tahapan ini.',
+        icon: 'success',
+        confirmButtonText: 'Selesai'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "/student/topic/"+next+"/tugas";
+        }
+      })
     }
+
+    function ajaxStore() {
+      $.ajax({
+        type: "post",
+        url: "/student/step",
+        data: {id: meeting, last_step: step},
+        dataType: "json",
+        success: function (response) {
+          if (response.meta.status == "success") {
+            alertNext()
+            forward = true
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR)
+        }
+      });
+    }
+
+    $(".btn-next").click(function (e) {
+      e.preventDefault();
+      if (forward) {
+        window.location = "/student/topic/"+next+"/tugas";
+      } else (
+        ajaxStore()
+      )
+    });
+
 
     $('.btn-reply').click(function (e) {
         e.preventDefault();

@@ -55,6 +55,9 @@
                 <button class="btn btn-primary btn-next" data-id="{{ $topic->id }}">Berikutnya <i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
+
+        <input type="text" class="d-none" id="meeting-id" value="{{ $meeting->id }}">
+
     </div>
 
     <!-- Modal Reply -->

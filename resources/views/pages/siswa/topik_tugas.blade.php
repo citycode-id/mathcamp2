@@ -63,9 +63,12 @@
 
         <div class="col-lg-6 float-right">
             <div class="float-right">
-                <a href="{{ route('home') }}" class="btn btn-success btn-next">Selesai <i class="fas fa-check"></i></a>
+                <button type="button" class="btn btn-success btn-next" data-id="{{ $topic->id }}">Selesai <i class="fas fa-check"></i></button>
             </div>
         </div>
+
+        <input type="text" class="d-none" id="meeting-id" value="{{ $meeting->id }}">
+
     </div>
 
     <!-- Modal Assignment -->
@@ -127,6 +130,7 @@
 
 @push('js-lib')
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
 @endpush
 
 @push('js')
