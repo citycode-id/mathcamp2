@@ -45,7 +45,7 @@ $(function () {
         title: 'Bagus!',
         text: 'Kamu sudah menyelesaikan tahapan ini.',
         icon: 'success',
-        confirmButtonText: 'Selesai'
+        confirmButtonText: 'Lanjut'
       }).then((result) => {
         if (result.isConfirmed) {
           window.location = "/student/topic/"+next+"/tugas";

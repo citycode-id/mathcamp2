@@ -13,8 +13,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            @foreach ($meeting->videos as $video)
-                                <button type="button" class="btn btn-block btn-danger m-1 btn-video" data-video="{{ $video->url }}"><i class="fab fa-youtube"></i> {{ $video->name }}</button>
+                            @foreach ($meeting as $m)
+                              @foreach ($m->videos as $video)
+                                  <button type="button" class="btn btn-block btn-danger m-1 btn-video" data-video="{{ $video->url }}"><i class="fab fa-youtube"></i> {{ $video->name }}</button>
+                              @endforeach
                             @endforeach
                         </div>
                     </div>
@@ -31,9 +33,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            @foreach ($meeting->modules as $module)
+                          @foreach ($meeting as $m)
+                            @foreach ($m->modules as $module)
                                 <a class="btn btn-block btn-danger m-1" href="{{ $module->url }}" target="_blank" role="button"><i class="fas fa-file-pdf"></i> {{ $module->name }}</a>
                             @endforeach
+                          @endforeach
                         </div>
                     </div>
                 </div>
@@ -87,7 +91,7 @@
             </div>
         </div>
 
-        <input type="text" class="d-none" id="meeting-id" value="{{ $meeting->id }}">
+        <input type="text" class="d-none" id="meeting-id" value="{{ $meeting->last()->id }}">
 
     </div>
 

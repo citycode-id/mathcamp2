@@ -49,6 +49,9 @@
                 <button class="btn btn-primary btn-next" data-id="{{ $topic->id }}">Berikutnya <i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
+
+        <input type="text" class="d-none" id="meeting-id" value="{{ $meeting->id }}">
+
     </div>
 </div>
 @endsection
@@ -90,5 +93,7 @@
 @endpush
 
 @push('js')
-    <script src="{{asset('js/pages/siswa-topik-pengenalan.js')}}"></script>
+    <script src="{{asset('js/pages/siswa-topik-pengenalan3.js')}}"></script>
+    <script src="{{asset('js/pages/dragula.js')}}"></script>
+
 @endpush

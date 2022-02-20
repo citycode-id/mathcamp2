@@ -51,7 +51,7 @@ class TopicController extends Controller
     public function video($id)
     {
         $topic = Topic::find($id);
-        $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
+        $meeting = Meeting::where('topic_id', $id)->where('meeting', '<=', intval($topic->current_meeting))->get();
 
         if ($topic) {
             return view('pages.siswa.topik_video', compact('topic', 'meeting'));
