@@ -8,11 +8,13 @@
 
     <div class="row mb-3">
         @if (session('status'))
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h6><i class="fas fa-check"></i><b> Terdaftar!</b></h6>
-                {{ session('status') }} - Kamu berhasil terdaftar.
-            </div>
+        <div class="col-lg-12 mb-4">
+          <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h6><i class="fas fa-check"></i><b> Terdaftar!</b></h6>
+              {{ session('status') }} Kamu berhasil mendaftar.
+          </div>
+        </div>
         @endif
 
         @forelse ($topics as $topic)
@@ -37,7 +39,7 @@
                 </div>
             </div>
         @empty
-            <div class="col-lg-3 col-sm-12 mb-4">
+            <div class="col-lg-12 mb-4">
                 <p>Belum ada topik pembelajaran</p>
             </div>
         @endforelse
