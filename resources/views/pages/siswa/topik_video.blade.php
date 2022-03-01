@@ -35,7 +35,7 @@
                         <div class="col-12">
                           @foreach ($meeting as $m)
                             @foreach ($m->modules as $module)
-                                <a class="btn btn-block btn-danger m-1" href="{{ $module->url }}" target="_blank" role="button"><i class="fas fa-file-pdf"></i> {{ $module->name }}</a>
+                                <a class="btn btn-block btn-danger m-1" href="{{ asset("storage/modules/$module->file") }}" target="_blank" role="button"><i class="fas fa-file-pdf"></i> {{ $module->name }}</a>
                             @endforeach
                           @endforeach
                         </div>
