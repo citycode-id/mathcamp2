@@ -11,6 +11,9 @@ $(function () {
 
     let forward = false;
 
+    let alertVideo = 0
+    let alertModul = 0
+
     $.ajax({
       type: "get",
       url: "/student/step",
@@ -76,22 +79,70 @@ $(function () {
       )
     });
 
-
-
     $(".btn-video").on("click", function(e) {
         e.preventDefault(); // Button that triggered the modal
+        if (alertVideo ==  1) {
+          let url = $(this).data("video");      // Extract url from data-video attribute
 
-        let url = $(this).data("video");      // Extract url from data-video attribute
-        $("#modalVideo").find("iframe").attr({
-            src : url,
-            allow : "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        });
+          $("#modalVideo").find("iframe").attr({
+              src : url,
+              allow : "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          });
 
-        $('#modalVideo').modal('show');
+          $('#modalVideo').modal('show');
+        } else {
+          Swal.fire({
+            title: 'Video Pembelajaran',
+            text: "Berikut ini adalah video tambahan sebagai pendukung materi tentang "+ $("span#name").html() +". Video akan dijalankan setelah klik tombol OK",
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              alertVideo = 1;
+
+              let url = $(this).data("video");      // Extract url from data-video attribute
+
+              $("#modalVideo").find("iframe").attr({
+                  src : url,
+                  allow : "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              });
+
+              $('#modalVideo').modal('show');
+            }
+          })
+        }
     });
 
     // Remove iframe attributes when the modal has finished being hidden from the user
     $("#modalVideo").on("hidden.bs.modal", function() {
         $("#modalVideo iframe").removeAttr("src allow");
+    });
+
+    $(".btn-modul").on("click", function (e) {
+      e.preventDefault();
+      if (alertModul == 1) {
+        let target = e.target
+        let link = target.attributes.href.value
+        window.open(link)
+      } else {
+        Swal.fire({
+          title: 'Modul Pembelajaran',
+          text: "Berikut ini adalah modul materi tentang "+ $("span#name").html() +". Silahkan pelajari terlebih dahulu modul ini untuk membantu pemahaman kalian agar bisa menjawab soal-soal berikutnya. Modul akan terbuka setelah klik OK",
+          icon: 'info',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            alertModul = 1;
+
+            let target = e.target
+            let link = target.attributes.href.value
+            window.open(link)
+          }
+        })
+      }
     });
 });
