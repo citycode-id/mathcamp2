@@ -344,4 +344,10 @@ $(function () {
             }
         });
     })
+
+    Swal.fire(
+      "Halaman Kelompok Topik.",
+      "Dihalaman ini Anda dapat menentukan anggota dalam setiap kelompok. Jika siswa sudah masuk kedalam kelompok maka siswa tersebut dapat mengikuti Topik Pembelajaran ini.",
+      "info"
+    );
 });

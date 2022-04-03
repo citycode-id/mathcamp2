@@ -1,4 +1,10 @@
 $(function () {
+    Swal.fire(
+      "Halaman Detail Topik",
+      "Dihalaman ini Anda dapat menentukan Tujuan Pembelajaran, Video, Modul dan Tugas untuk setiap Pertemuan Topik. Kemudian Anda juga bisa menentukan pertemuan yang aktif pada saat ini.",
+      "info"
+    );
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -315,4 +321,6 @@ $(function () {
             }
         });
     });
+
+
 });

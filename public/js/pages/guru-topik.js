@@ -60,4 +60,10 @@ $(function () {
             }
         });
     });
+
+    Swal.fire(
+      "Selamat Datang!",
+      "Disini Anda dapat membuat topik baru dan melihat topik yang pernah dibuat sebelumnya. Untuk melihat detil setiap topik, klik ikon mata.",
+      "info"
+    );
 });

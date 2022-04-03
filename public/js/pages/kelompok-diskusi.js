@@ -46,4 +46,10 @@ $(function () {
 
 
     });
+
+    Swal.fire(
+      "Halaman Diskusi Topik.",
+      "Dihalaman ini Anda dapat langsung berdiskusi dengan masing-masing kelompok.",
+      "info"
+    );
 });
