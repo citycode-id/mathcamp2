@@ -5,7 +5,7 @@
     <div class="row">
 
         {{-- Tugas Kelompok --}}
-        <div class="col-lg-6 d-flex">
+        {{-- <div class="col-lg-6 d-flex">
             <div class="card flex-fill">
                 <div class="card-header bg-primary">
                     <h5 class="card-title text-white mb-0">Tugas Kelompok</h5>
@@ -27,10 +27,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         {{-- Tugas Pribadi --}}
-        <div class="col-lg-6 d-flex">
+        <div class="col-lg-12 d-flex">
             <div class="card flex-fill">
                 <div class="card-header bg-info">
                     <h5 class="card-title text-white mb-0">Tugas Pribadi</h5>

@@ -64,13 +64,15 @@ class TopicController extends Controller
     {
         $topic = Topic::find($id);
         $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
+        $assign = $meeting->answers()->where('type', 'group')->where('user_id', auth()->user()->id)->get()->last();
+
         $group = Group::where('topic_id', $id)->where('user_ids', Auth::user()->id)->first();
         $discussion = Discussion::where('group_id', $group->id)->get();
         $member = User::whereHas('groups', function($q) use($group) {
             $q->where('_id', $group->id);
         })->get();
         if ($topic) {
-            return view('pages.siswa.topik_diskusi', compact('topic', 'group', 'discussion', 'member', 'meeting'));
+            return view('pages.siswa.topik_diskusi', compact('topic', 'group', 'discussion', 'member', 'meeting', 'assign'));
         }
 
         abort(404);

@@ -9,6 +9,8 @@ $(function () {
         }
     });
 
+    bsCustomFileInput.init()
+
     const step = 4
     const meeting = $("#meeting-id").val();
     const next = $(".btn-next").data('id')
@@ -80,7 +82,6 @@ $(function () {
       )
     });
 
-
     $('.btn-reply').click(function (e) {
         e.preventDefault();
         $("#group_id").val($(this).data('group'));
@@ -116,5 +117,44 @@ $(function () {
         });
 
 
+    });
+
+    $('.btn-assignment').click(function (e) {
+        e.preventDefault();
+        $('input.meeting-id').val($(this).data('meeting'));
+        $('#modalAssignment').modal('show');
+    });
+
+    $('#form-assignment').submit(function (e) {
+        e.preventDefault();
+
+        var formData = new FormData($("#form-assignment")[0]);
+
+        $.ajax({
+            url: "/student/answer/group",
+            type: "POST",
+            data : formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function() {
+                $.LoadingOverlay('show')
+            },
+            success: function(response){
+                $.LoadingOverlay('hide')
+                if (response.meta.status === 'success') {
+                    $("#modalAssignment").modal('hide');
+
+                    var date = DateTime.fromISO(response.data.created_at).toFormat('dd-MM-yyyy HH:mm:ss')
+                    $("#assignment-answer").children("a:first").remove();
+                    var content = `<a href="/storage/answers/${response.data.assignments[0].file}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
+                    $(content).appendTo('#assignment-answer');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                $.LoadingOverlay('hide')
+                Swal.fire('Error!', 'Terjadi Kesalahan Server.', 'error');
+            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
     });
 });

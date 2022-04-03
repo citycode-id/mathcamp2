@@ -18,7 +18,7 @@
         @endif
 
         @forelse ($topics as $topic)
-            <div class="col-lg-3 col-sm-12 mb-4">
+            <div class="col-lg-3 col-sm-12 mb-4" data-aos="fade-in" data-aos-delay="50">
                 <div class="card">
                     <img src="https://via.placeholder.com/400x250.webp?text=MathCamp" class="card-img-top" alt="image"
                         style="border-radius: 5px;">
@@ -47,3 +47,17 @@
     <!--Row-->
 </div>
 @endsection
+
+@push('js-lib')
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+@endpush
+
+@push('js')
+<script>
+  AOS.init();
+</script>
+@endpush
+
+@push('css')
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+@endpush
