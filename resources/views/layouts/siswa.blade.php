@@ -12,7 +12,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/ruang-admin.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/ruang-admin.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/sweetalert2/dist/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
     @stack('css')
 </head>

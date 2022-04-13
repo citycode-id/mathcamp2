@@ -42,8 +42,9 @@ $(function () {
     function alertNext(){
       Swal.fire({
         title: 'Bagus!',
-        text: 'Kamu sudah menyelesaikan tahapan ini.',
-        icon: 'success',
+        text: 'Kamu sudah menyelesaikan topik ini.',
+        imageUrl: '/img/applause.gif',
+        imageWidth: 380,
         confirmButtonText: 'Selesai'
       }).then((result) => {
         if (result.isConfirmed) {

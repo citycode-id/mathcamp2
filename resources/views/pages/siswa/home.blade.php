@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Topik Pembelajaran</h1>
+        <h1 class="h3 mb-0 text-primary"><strong>Topik Pembelajaran</strong></h1>
     </div>
 
     <div class="row mb-3">
@@ -18,7 +18,7 @@
         @endif
 
         @forelse ($topics as $topic)
-            <div class="col-lg-3 col-sm-12 mb-4" data-aos="fade-in" data-aos-delay="50">
+            <div class="col-lg-3 col-sm-12 mb-4" data-aos="fade-up" data-aos-delay="250">
                 <div class="card">
                     <img src="https://via.placeholder.com/400x250.webp?text=MathCamp" class="card-img-top" alt="image"
                         style="border-radius: 5px;">

@@ -85,7 +85,7 @@
                     <div class="modal-body">
                         <input type="text" class="d-none meeting-id"  name="id">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="file" id="customFile" accept=".pdf">
+                            <input type="file" class="custom-file-input" name="file" id="customFile" accept=".jpg,.png,.jpeg">
                             <label class="custom-file-label" for="customFile" data-browse="Pilih">Pilih File</label>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <div class="modal-body">
                         <input type="text" class="d-none meeting-id"  name="id">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="file" id="customFile" accept=".pdf">
+                            <input type="file" class="custom-file-input" name="file" id="customFile" accept=".jpg,.jpeg,.png">
                             <label class="custom-file-label" for="customFile" data-browse="Pilih">Pilih File</label>
                         </div>
                     </div>

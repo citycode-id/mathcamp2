@@ -25,9 +25,13 @@ a:focus {
 }
 
 #wrapper #content-wrapper {
-  background-color: #fafdfb;
+  background-image: url("/img/bg.png");
+  /* background-color: #fafdfb; */
   width: 100%;
-  overflow-x: hidden
+  overflow-x: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #wrapper #content-wrapper #content {
