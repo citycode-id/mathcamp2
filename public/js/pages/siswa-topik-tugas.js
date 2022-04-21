@@ -29,7 +29,7 @@ $(function () {
         } else {
           Swal.fire(
               "Instruksi!",
-              "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan kedalam ruang tugas kemudian mengakses soal Latihan untuk dikerjakan secara mandiri dan diupload kembali keruang tugas",
+              "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan ke dalam ruang tugas kemudian mengakses soal latihan untuk dikerjakan secara mandiri dan diunggah kembali ke ruang tugas.",
               "info"
           );
         }

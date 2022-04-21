@@ -32,7 +32,7 @@ $(function () {
         } else {
           Swal.fire(
             "Instruksi!",
-            "Setelah kalian menonton video pembelajaran dan membaca materi pembelajaran serta menemukan sumberi belajar melalui tautan, berikutnya kalian akan dibagi kedalam kelompok kecil untuk berdiskusi mengenai permasalahan yang ditemukan.",
+            "Setelah kalian menonton video pembelajaran dan membaca materi pembelajaran serta menemukan sumber belajar melalui tautan, berikutnya kalian akan dibagi kedalam kelompok kecil untuk berdiskusi mengenai permasalahan yang ditemukan.",
             "info"
           );
         }

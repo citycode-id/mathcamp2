@@ -29,7 +29,7 @@ $(function () {
       if (jqxhr.status == 404) {
         Swal.fire(
           'Selamat Datang',
-          'Selamat datang dikelas matematika pada hari ini dengan materi bangun ruang sisi datar, sebelum kita memulai pembelajaran ada baiknya kalian memahami Kembali materi mengenai bangun datar dan bangun ruang sisi datar Sebutkan bangun datar  dan bangun ruang sisi datar yang kalian ketahui dan tuliskan pada kolom dibawah ini.',
+          'Selamat datang di kelas matematika pada hari ini dengan materi Bangun Ruang Sisi Datar, sebelum kita memulai pembelajaran ada baiknya kalian memahami kembali materi mengenai bangun datar dan bangun ruang sisi datar. Sebutkan bangun datar dan bangun ruang sisi datar yang kalian ketahui dan tuliskan pada kolom dibawah ini.',
           'info'
         )
       }
