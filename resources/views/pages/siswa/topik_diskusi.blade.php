@@ -18,7 +18,7 @@
                               <a role="button" target="_blank" href="{{ asset('storage/assignments/'.$assignment->file) }}" class="btn btn-danger btn-block mb-3"><i class="fas fa-file-pdf"></i> Download {{ $assignment->name }}</a>
                               <p id="assignment-answer">
                                   @if (!empty($assign))
-                                      <a href="{{ asset('storage/answers/'.$assign->file) }}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $assign->created_at)->format('d-m-Y H:i:s') }}</small>
+                                      <a href="{{ asset('storage/answers/'.$assign->group) }}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $assign->updated_at)->format('d-m-Y H:i:s') }}</small>
                                   @endif
                               </p>
                               <button type="button" class="btn btn-outline-success btn-assignment" data-meeting="{{ $meeting->id }}">Upload Jawaban</button>

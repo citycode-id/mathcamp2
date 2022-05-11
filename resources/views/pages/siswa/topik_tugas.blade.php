@@ -43,7 +43,7 @@
                             <a role="button" target="_blank" href="{{ asset('storage/tasks/'.$task->file) }}" class="btn btn-danger btn-block mb-3"><i class="fas fa-file-pdf"></i> Download {{ $task->name }}</a>
                             <p id="task-answer">
                                 @if (!empty($answer))
-                                    <a href="{{ asset('storage/answers/'.$answer->file) }}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $answer->created_at)->format('d-m-Y H:i:s') }}</small>
+                                    <a href="{{ asset('storage/answers/'.$answer->individual) }}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> <small> - {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $answer->updated_at)->format('d-m-Y H:i:s') }}</small>
                                 @endif
                             </p>
                             <button type="button" class="btn btn-outline-success btn-task" data-meeting="{{ $meeting->id }}">Upload Jawaban</button>

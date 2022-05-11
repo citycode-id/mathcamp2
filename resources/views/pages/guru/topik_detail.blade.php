@@ -185,7 +185,6 @@
                                                             <th>Kelas</th>
                                                             <th>Tugas Kelompok</th>
                                                             <th>Tugas Pribadi</th>
-                                                            <th>Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody></tbody>
