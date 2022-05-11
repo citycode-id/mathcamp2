@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth', 'role:teacher'], 'prefix' => 'teacher', '
         Route::post('/assignment', [App\Http\Controllers\AssignmentController::class, 'store'])->name('assignment.store');
         Route::get('/assignment/{id}', [App\Http\Controllers\AssignmentController::class, 'show'])->name('assignment.show');
         Route::delete('/assignment/{id}/{meeting}', [App\Http\Controllers\AssignmentController::class, 'destroy'])->name('assignment.destroy');
+        // answer
+        Route::get('/answer/{id}', [App\Http\Controllers\AnswerController::class, 'show'])->name('answer.show');
+
     });
 
     // Group
