@@ -64,7 +64,7 @@ class TopicController extends Controller
     {
         $topic = Topic::find($id);
         $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
-        $assign = $meeting->answers()->where('type', 'group')->where('user_id', auth()->user()->id)->get()->last();
+        $assign = $meeting->answers()->whereNotNull('group')->where('user_id', auth()->user()->id)->first();
 
         $group = Group::where('topic_id', $id)->where('user_ids', Auth::user()->id)->first();
         $discussion = Discussion::where('group_id', $group->id)->get();
@@ -83,8 +83,8 @@ class TopicController extends Controller
         $topic = Topic::find($id);
         $meeting = Meeting::where('topic_id', $id)->where('meeting', intval($topic->current_meeting))->first();
 
-        $assign = $meeting->answers()->where('type', 'group')->where('user_id', auth()->user()->id)->get()->last();
-        $answer = $meeting->answers()->where('type', 'individual')->where('user_id', auth()->user()->id)->first();
+        $assign = $meeting->answers()->where('user_id', auth()->user()->id)->first();
+        $answer = $meeting->answers()->where('user_id', auth()->user()->id)->first();
         if ($topic) {
             return view('pages.siswa.topik_tugas', compact('topic', 'meeting', 'assign', 'answer'));
         }
