@@ -170,7 +170,7 @@ $(function () {
                 className: "text-center",
                 data: null,
                 render: function (data, type, row, meta) {
-                    return `<a href="/storage/modules/${row.group}" target="_blank"><i class="fas fa-download"></i></a>`
+                    return `<a href="/storage/answers/${row.group}" target="_blank"><i class="fas fa-download"></i></a>`
                 }
             },
             {
@@ -178,7 +178,7 @@ $(function () {
                 className: "text-center",
                 data: null,
                 render: function (data, type, row, meta) {
-                    return `<a href="/storage/modules/${row.individual}" target="_blank"><i class="fas fa-download"></i></a>`
+                    return `<a href="/storage/answers/${row.individual}" target="_blank"><i class="fas fa-download"></i></a>`
                 }
             }
         ]
