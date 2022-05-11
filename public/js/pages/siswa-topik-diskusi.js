@@ -144,9 +144,9 @@ $(function () {
                 if (response.meta.status === 'success') {
                     $("#modalAssignment").modal('hide');
 
-                    var date = DateTime.fromISO(response.data.created_at).toFormat('dd-MM-yyyy HH:mm:ss')
-                    $("#assignment-answer").children("a:first").remove();
-                    var content = `<a href="/storage/answers/${response.data.assignments[0].file}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
+                    var date = DateTime.fromISO(response.data.updated_at).toFormat('dd-MM-yyyy HH:mm:ss')
+                    $("#assignment-answer").empty();
+                    var content = `<a href="/storage/answers/${response.data.group}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small> ${date}</small> `
                     $(content).appendTo('#assignment-answer');
                 }
             },

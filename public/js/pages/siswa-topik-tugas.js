@@ -92,37 +92,38 @@ $(function () {
         $('#modalAssignment').modal('show');
     });
 
-    $('#form-assignment').submit(function (e) {
-        e.preventDefault();
+    // $('#form-assignment').submit(function (e) {
+    //     e.preventDefault();
 
-        var formData = new FormData($("#form-assignment")[0]);
+    //     var formData = new FormData($("#form-assignment")[0]);
 
-        $.ajax({
-            url: "/student/answer/group",
-            type: "POST",
-            data : formData,
-            processData: false,
-            contentType: false,
-            beforeSend: function() {
-                $.LoadingOverlay('show')
-            },
-            success: function(response){
-                $.LoadingOverlay('hide')
-                if (response.meta.status === 'success') {
-                    $("#modalAssignment").modal('hide');
+    //     $.ajax({
+    //         url: "/student/answer/group",
+    //         type: "POST",
+    //         data : formData,
+    //         processData: false,
+    //         contentType: false,
+    //         beforeSend: function() {
+    //             $.LoadingOverlay('show')
+    //         },
+    //         success: function(response){
+    //             $.LoadingOverlay('hide')
+    //             if (response.meta.status === 'success') {
+    //                 $("#modalAssignment").modal('hide');
 
-                    var date = DateTime.fromISO(response.data.created_at).toFormat('dd-MM-yyyy HH:mm:ss')
-                    var content = `<a href="/storage/answers/${response.data.file}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
-                    $(content).appendTo('#assignment-answer');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                $.LoadingOverlay('hide')
-                Swal.fire('Error!', 'Terjadi Kesalahan Server.', 'error');
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-            }
-        });
-    });
+    //                 var date = DateTime.fromISO(response.data.created_at).toFormat('dd-MM-yyyy HH:mm:ss')
+    //                 $("#assignment-answer").children("a:first").remove();
+    //                 var content = `<a href="/storage/answers/${response.data.group}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
+    //                 $(content).appendTo('#assignment-answer');
+    //             }
+    //         },
+    //         error: function(xhr, ajaxOptions, thrownError) {
+    //             $.LoadingOverlay('hide')
+    //             Swal.fire('Error!', 'Terjadi Kesalahan Server.', 'error');
+    //             console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+    //         }
+    //     });
+    // });
 
     $('.btn-task').click(function (e) {
         e.preventDefault();
@@ -149,15 +150,16 @@ $(function () {
                 if (response.meta.status === 'success') {
                     $("#modalTask").modal('hide');
 
-                    var date = DateTime.fromISO(response.data.created_at).toFormat('dd-MM-yyyy HH:mm:ss')
-                    var content = `<a href="/storage/answers/${response.data.file}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
+                    var date = DateTime.fromISO(response.data.updated_at).toFormat('dd-MM-yyyy HH:mm:ss')
+                    $("#task-answer").empty();
+                    var content = `<a href="/storage/answers/${response.data.individual}" target="_blank" rel="noopener noreferrer">Hasil Tugas</a> - <small>${date}</small> `
                     $(content).appendTo('#task-answer');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 $.LoadingOverlay('hide')
                 Swal.fire('Error!', 'Terjadi Kesalahan Server.', 'error');
-            console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+                console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
         });
     });

@@ -137,38 +137,52 @@ $(function () {
         ]
     });
 
-    // var task_result = $('#table-task-result-5').DataTable({
-    //     ajax: "/",
-    //     searching: false,
-    //     ordering: false,
-    //     paging: false,
-    //     columnDefs: [
-    //         {
-    //             targets: 0,
-    //             className: "text-center",
-    //             width: '10%',
-    //             render: function (data, type, row, meta) {
-    //                 return meta.row + 1
-    //             }
-    //         },
-    //         {
-    //             targets: 1,
-    //             data: 'name',
-    //             render: function (data, type, row, meta) {
-    //                 return `<a href="/storage/modules/${row.file}" target="_blank">${data}</a>`
-    //             }
-    //         },
-    //         {
-    //             targets: 2,
-    //             className: "text-center",
-    //             width: '10%',
-    //             data: '_id',
-    //             render: function (data, type, row, meta) {
-    //                 return `<button class="btn btn-sm btn-danger btn-delete" data-id="${data}"><i class="fas fa-times"></i></button>`
-    //             }
-    //         }
-    //     ]
-    // });
+    var task_result = $('#table-task-result-5').DataTable({
+        ajax: '/teacher/meeting/answer/'+$('#table-task-result-2').data('id'),
+        searching: false,
+        ordering: false,
+        paging: false,
+        columnDefs: [
+          {
+              targets: 0,
+              className: "text-center",
+              width: '10%',
+              render: function (data, type, row, meta) {
+                  return meta.row + 1
+              }
+          },
+          {
+              targets: 1,
+              data: null,
+              render: function (data, type, row, meta) {
+                  return row.user.name
+              }
+          },
+          {
+              targets: 2,
+              data: null,
+              render: function (data, type, row, meta) {
+                  return row.user.classroom
+              }
+          },
+          {
+              targets: 3,
+              className: "text-center",
+              data: null,
+              render: function (data, type, row, meta) {
+                  return `<a href="/storage/modules/${row.group}" target="_blank"><i class="fas fa-download"></i></a>`
+              }
+          },
+          {
+              targets: 4,
+              className: "text-center",
+              data: null,
+              render: function (data, type, row, meta) {
+                  return `<a href="/storage/modules/${row.individual}" target="_blank"><i class="fas fa-download"></i></a>`
+              }
+          }
+        ]
+    });
 
     var editor1;
 
