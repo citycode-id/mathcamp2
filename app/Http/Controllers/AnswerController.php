@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResponseFormatter;
+use App\Models\Answer;
 use App\Models\Meeting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,12 @@ use Illuminate\Support\Str;
 
 class AnswerController extends Controller
 {
+    public function show($id)
+    {
+        $answers = Answer::where('meeting_id', $id)->with('user')->get();
+        return ResponseFormatter::success($answers, 'Data ditemukan');
+    }
+
     public function individual(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -29,14 +36,14 @@ class AnswerController extends Controller
         );
 
         $meeting = Meeting::find($request->id);
-        $assignment = $meeting->answers()->create([
+        $assignment = $meeting->answers()->updateOrCreate([
             'user_id' => auth()->user()->id,
-            'type' => 'individual',
-            'file' => $filename
+        ],[
+          'individual' => $filename
         ]);
 
         if ($assignment) {
-            return ResponseFormatter::success($meeting, 'Data berhasil disimpan.', 201);
+            return ResponseFormatter::success($assignment, 'Data berhasil disimpan.', 201);
         } else {
             return ResponseFormatter::error(null, 'Data gagal disimpan.', 500);
         }
@@ -60,14 +67,14 @@ class AnswerController extends Controller
         );
 
         $meeting = Meeting::find($request->id);
-        $assignment = $meeting->answers()->create([
+        $assignment = $meeting->answers()->updateOrCreate([
             'user_id' => auth()->user()->id,
-            'type' => 'group',
-            'file' => $filename
+        ],[
+          'group' => $filename
         ]);
 
         if ($assignment) {
-            return ResponseFormatter::success($meeting, 'Data berhasil disimpan.', 201);
+            return ResponseFormatter::success($assignment, 'Data berhasil disimpan.', 201);
         } else {
             return ResponseFormatter::error(null, 'Data gagal disimpan.', 500);
         }
