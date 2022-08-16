@@ -26,7 +26,7 @@ $(function () {
       } else {
         Swal.fire(
             "Instruksi!",
-            "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan ke dalam ruang tugas kemudian mengakses soal latihan untuk dikerjakan secara mandiri dan diunggah kembali ke ruang tugas.",
+            "Tujuan pembelajaran kita pada materi bangun ruang sisi datar menggunakan web based instruction dengan pengenalan permasalahan pada materi diharapkan siswa dapat:",
             "info"
         );
       }
