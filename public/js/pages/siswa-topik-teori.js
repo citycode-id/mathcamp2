@@ -23,6 +23,12 @@ $(function () {
       if (last >= step) {
         console.log(last);
         alertNext();
+      } else {
+        Swal.fire(
+            "Instruksi!",
+            "Seluruh siswa dan kelompoknya diharapkan membagikan hasil temuan yang didiskusikan ke dalam ruang tugas kemudian mengakses soal latihan untuk dikerjakan secara mandiri dan diunggah kembali ke ruang tugas.",
+            "info"
+        );
       }
     },
     error: function (jqxhr, textStatus, errorThrown) {
